@@ -9,17 +9,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(fmt REQUIRED)
-
-# include(cmake/fetched-libs.cmake)
-
-# add_subdirectory(lib)
+find_package(spdlog REQUIRED)
+find_package(SFML REQUIRED)
 
 add_executable(main source/main.cpp)
 target_include_directories(main PRIVATE source)
-target_link_libraries(main PRIVATE fmt::fmt)
+target_link_libraries(main PRIVATE fmt::fmt spdlog::spdlog sfml::sfml)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-  target_compile_options(main PRIVATE -Wall -Wextra -Wconversion -Wswitch-enum)
+  target_compile_options(main PRIVATE -Wall -Wextra -Wconversion)
 
   # sanitizer
   target_compile_options(main PRIVATE -fsanitize=address,leak,undefined)
