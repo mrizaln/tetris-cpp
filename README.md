@@ -4,13 +4,15 @@ Tetris written in C++
 
 ## Dependencies
 
-Build dependecies
+Build tools
 
 - Python 3
-- CMake
-- Conan
+- CMake 2.23+
+- Conan 2
 
 Library dependencies
+
+> dependencies are managed using Conan
 
 - fmt
 
