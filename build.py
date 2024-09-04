@@ -15,19 +15,14 @@ def main() -> int:
     parser = ArgumentParser(description="build script")
 
     a = parser.add_argument
-    a("build_type", choices=["debug", "release"], default="debug", nargs="?")
+    a("--release", action="store_true")
     a("--refresh", action="store_true")
     a("--run", action="store_true")
 
     args = parser.parse_args()
 
-    build_type = args.build_type
+    build_type = "release" if args.release else "debug"
     refresh = args.refresh
-
-    if args.run:
-        bin_path = Path("build", build_type.capitalize(), "main")
-        run(bin_path).check_returncode()
-        return 0
 
     def is_windows():
         return system() == "Windows"
@@ -48,6 +43,10 @@ def main() -> int:
 
     build = BUILD.format(build_type)
     run(build.split()).check_returncode()
+
+    if args.run:
+        bin_path = Path("build", build_type.capitalize(), "main")
+        run(bin_path).check_returncode()
 
     return 0
 
