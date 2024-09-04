@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 from subprocess import run
 from argparse import ArgumentParser

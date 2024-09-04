@@ -27,6 +27,7 @@ elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   target_compile_options(main PRIVATE /W4)
 
   # sanitizer
-  target_compile_options(main PRIVATE /fsanitize=address)
-  target_link_options(main PRIVATE /fsanitize=address)
+  # ~~~~~~~~~
+  # target_compile_options(main PRIVATE /fsanitize=address)
+  # target_link_options(main PRIVATE /fsanitize=address)
 endif()
