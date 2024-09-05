@@ -16,10 +16,14 @@ Build tools
 
 Library dependencies
 
-> dependencies are managed using Conan (see [conanfile.py](conanfile.py) for exact versions of the dependencies)
+> library dependencies are managed using Conan (see [conanfile.py](conanfile.py) for exact versions of the dependencies)
 
+- asio
 - fmt
+- range-v3
 - SFML
+- spdlog
+- tl-expected
 
 ## Building
 
