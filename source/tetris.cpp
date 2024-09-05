@@ -2,6 +2,7 @@
 
 #include <SFML/Window.hpp>
 
+#include <chrono>
 #include <cmath>
 #include <limits>
 
@@ -10,8 +11,8 @@ namespace
     auto toMicros(tet::usize fps)
     {
         using namespace std::chrono_literals;
-        using FloatMillis = std::chrono::duration<tet::f32, std::milli>;
-        auto duration     = FloatMillis{ 1000 } / static_cast<tet::f32>(fps);
+        using FloatSeconds = std::chrono::duration<tet::f32>;
+        auto duration      = FloatSeconds{ 1 } / static_cast<tet::f32>(fps);
         return std::chrono::duration_cast<std::chrono::microseconds>(duration);
     }
 
@@ -33,19 +34,18 @@ namespace
     public:
         DeltaTimer() = default;
 
-        void reset() { m_last = m_clock.now(); }
+        void reset() { m_last = tet::Clock::now(); }
 
         tet::Duration elapsed()
         {
-            auto now   = m_clock.now();
+            auto now   = tet::Clock::now();
             auto delta = now - m_last;
             m_last     = now;
             return std::chrono::duration_cast<tet::Duration>(delta);
         }
 
     private:
-        tet::Clock             m_clock = {};
-        tet::Clock::time_point m_last  = m_clock.now();
+        tet::Clock::time_point m_last = tet::Clock::now();
     };
 }
 
@@ -87,7 +87,7 @@ namespace tet
             // actual draw
             {
                 elapsed   += deltaTimer.elapsed();
-                auto time  = static_cast<f32>(elapsed.count());
+                auto time  = std::chrono::duration_cast<std::chrono::duration<float>>(elapsed).count();
 
                 // funny color cycle
                 auto r = (std::sin(23.0F / 8.0F * time) + 1.0F) * 0.1F + 0.4F;
