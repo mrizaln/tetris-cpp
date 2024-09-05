@@ -15,11 +15,16 @@ find_package(range-v3 REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(tl-expected REQUIRED)
 
-add_executable(main source/main.cpp source/tetris.cpp source/game_state.cpp
-                    source/renderer.cpp)
-target_include_directories(main PRIVATE source)
-target_link_libraries(main PRIVATE asio::asio fmt::fmt range-v3::range-v3
-                                   sfml::sfml spdlog::spdlog tl::expected)
+# the tetris game
+add_library(tet OBJECT source/tet/tetris.cpp source/tet/game_state.cpp
+                       source/tet/renderer.cpp)
+target_include_directories(tet PUBLIC source)
+target_link_libraries(tet PUBLIC asio::asio fmt::fmt range-v3::range-v3
+                                 sfml::sfml spdlog::spdlog tl::expected)
+
+# the main executable
+add_executable(main source/main.cpp)
+target_link_libraries(main PRIVATE tet)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
   target_compile_options(main PRIVATE -Wall -Wextra -Wconversion)

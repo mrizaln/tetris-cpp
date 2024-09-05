@@ -1,8 +1,7 @@
 #pragma once
 
-#include "common.hpp"
-
-#include "async/async.hpp"
+#include "tet/async/async.hpp"
+#include "tet/common.hpp"
 
 namespace tet
 {

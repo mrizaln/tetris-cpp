@@ -1,4 +1,5 @@
-#include "renderer.hpp"
+#include "tet/renderer.hpp"
+
 #include <fmt/core.h>
 
 namespace tet

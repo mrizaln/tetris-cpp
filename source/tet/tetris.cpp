@@ -1,4 +1,4 @@
-#include "tetris.hpp"
+#include "tet/tetris.hpp"
 
 #include <SFML/Window.hpp>
 

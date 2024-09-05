@@ -1,9 +1,8 @@
 #pragma once
 
-#include "game_state.hpp"
-#include "renderer.hpp"
-
-#include "async/async.hpp"
+#include "tet/async/async.hpp"
+#include "tet/game_state.hpp"
+#include "tet/renderer.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
 

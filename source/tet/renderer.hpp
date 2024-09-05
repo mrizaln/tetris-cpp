@@ -1,6 +1,6 @@
 #pragma once
 
-#include "async/async.hpp"
+#include "tet/async/async.hpp"
 
 #include <SFML/Graphics/RenderTarget.hpp>
 

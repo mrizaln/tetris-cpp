@@ -1,4 +1,4 @@
-#include "tetris.hpp"
+#include "tet/tetris.hpp"
 
 #include <fmt/core.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
