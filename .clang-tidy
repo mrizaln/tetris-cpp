@@ -10,4 +10,5 @@ Checks:
   -readability-redundant-access-specifiers,
   -misc-non-private-member-variables-in-classes,
   -readability-identifier-length,
+  -readability-uppercase-literal-suffix,
   -bugprone-easily-swappable-parameters,     # ignore this for now

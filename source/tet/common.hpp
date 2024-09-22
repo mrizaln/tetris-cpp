@@ -2,18 +2,22 @@
 
 #include "util/traits.hpp"
 
-#include <range/v3/range.hpp>
-#include <range/v3/view.hpp>
-#include <range/v3/to_container.hpp>
 #include <tl/expected.hpp>
+#include <fmt/core.h>
+#include <fmt/ranges.h>
+#include <fmt/std.h>
+#include <magic_enum.hpp>
 
 #include <chrono>
+#include <concepts>
+#include <random>
+#include <ranges>
+#include <type_traits>
 
 namespace tet
 {
-
-    namespace rr = ranges;
-    namespace rv = ranges::views;
+    namespace rr = std::ranges;
+    namespace rv = std::views;
 
     using i8  = std::int8_t;
     using i16 = std::int16_t;
@@ -43,6 +47,28 @@ namespace tet
     {
         using Fs::operator()...;
     };
+
+    /**
+     * @brief randomly generate number in range `[min, max]` for integral or `[min, max)` for floating point
+     *
+     * @tparam T whether integral or floating point type
+     * @param min minimum value
+     * @param max maximum value
+     * @return the randomly generated number
+     */
+    template <typename T>
+        requires std::integral<T> or std::floating_point<T>
+    T random(T min, T max)
+    {
+        thread_local static auto rng = std::mt19937{};
+        if constexpr (std::integral<T>) {
+            auto dist = std::uniform_int_distribution{ min, max };
+            return dist(rng);
+        } else if (std::floating_point<T>) {
+            auto dist = std::uniform_real_distribution{ min, max };
+            return dist(rng);
+        }
+    }
 }
 
 namespace tet::operators::inline visit_operator

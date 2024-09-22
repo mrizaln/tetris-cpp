@@ -6,20 +6,22 @@
 #include <cmath>
 #include <limits>
 
+namespace chr = std::chrono;
+
 namespace
 {
     auto toMicros(tet::usize fps)
     {
         using namespace std::chrono_literals;
-        using FloatSeconds = std::chrono::duration<tet::f32>;
+        using FloatSeconds = chr::duration<tet::f32>;
         auto duration      = FloatSeconds{ 1 } / static_cast<tet::f32>(fps);
-        return std::chrono::duration_cast<std::chrono::microseconds>(duration);
+        return chr::duration_cast<chr::microseconds>(duration);
     }
 
     tet::f32 toFps(auto duration)
     {
-        using FloatSecond = std::chrono::duration<tet::f32>;
-        auto seconds      = std::chrono::duration_cast<FloatSecond>(duration).count();
+        using FloatSecond = chr::duration<tet::f32>;
+        auto seconds      = chr::duration_cast<FloatSecond>(duration).count();
         return 1.0F / seconds;
     }
 
@@ -41,7 +43,7 @@ namespace
             auto now   = tet::Clock::now();
             auto delta = now - m_last;
             m_last     = now;
-            return std::chrono::duration_cast<tet::Duration>(delta);
+            return chr::duration_cast<tet::Duration>(delta);
         }
 
     private:
@@ -87,7 +89,7 @@ namespace tet
             // actual draw
             {
                 elapsed   += deltaTimer.elapsed();
-                auto time  = std::chrono::duration_cast<std::chrono::duration<float>>(elapsed).count();
+                auto time  = chr::duration_cast<chr::duration<float>>(elapsed).count();
 
                 // funny color cycle
                 auto r = (std::sin(23.0F / 8.0F * time) + 1.0F) * 0.1F + 0.4F;

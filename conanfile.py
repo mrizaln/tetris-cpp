@@ -12,6 +12,7 @@ class Recipe(ConanFile):
         "sfml/2.6.1",
         "spdlog/1.14.1",
         "tl-expected/1.1.0",
+        "magic_enum/0.9.6"
     ]
 
     def layout(self):
