@@ -1,14 +1,16 @@
 #include "tet/block.hpp"
 
+#include <print>
+
 void printCollision(const tet::BlockCollision& collision)
 {
     auto [width, height] = tet::BlockCollision::s_cells;
     for (auto y : tet::rv::iota(0uz, height)) {
-        fmt::print("\t\t");
+        std::print("\t\t");
         for (auto x : tet::rv::iota(0uz, width)) {
-            fmt::print("{}", collision[x, y] ? "⬛" : "⬜");
+            std::print("{}", collision[x, y] ? "⬛" : "⬜");
         }
-        fmt::println("");
+        std::println("");
     }
 }
 
@@ -19,10 +21,10 @@ int main()
 
         for (auto i : tet::rv::iota(0uz, tet::Block::s_rotationNum)) {
             const auto& collision = block.collision();
-            fmt::println("Tetromino: {} (variant {})", name, i);
+            std::println("Tetromino: {} (variant {})", name, i);
             printCollision(collision);
             block.rotate();
-            fmt::println("");
+            std::println("");
         }
     }
 }

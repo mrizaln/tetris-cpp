@@ -2,11 +2,8 @@
 
 #include "util/traits.hpp"
 
-#include <tl/expected.hpp>
-#include <fmt/core.h>
-#include <fmt/ranges.h>
-#include <fmt/std.h>
 #include <magic_enum.hpp>
+#include <tl/expected.hpp>
 
 #include <chrono>
 #include <concepts>

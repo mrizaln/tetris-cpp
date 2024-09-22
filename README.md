@@ -18,10 +18,9 @@ Library dependencies
 
 > library dependencies are managed using Conan (see [conanfile.py](conanfile.py) for exact versions of the dependencies)
 
-- asio
-- fmt
-- range-v3
 - SFML
+- asio
+- magic_enum
 - spdlog
 - tl-expected
 

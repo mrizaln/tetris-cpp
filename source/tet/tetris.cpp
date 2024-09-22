@@ -92,9 +92,9 @@ namespace tet
                 auto time  = chr::duration_cast<chr::duration<float>>(elapsed).count();
 
                 // funny color cycle
-                auto r = (std::sin(23.0F / 8.0F * time) + 1.0F) * 0.1F + 0.4F;
-                auto g = (std::cos(13.0F / 8.0F * time) + 1.0F) * 0.2F + 0.3F;
-                auto b = (std::sin(41.0F / 8.0F * time) + 1.5F) * 0.2F;
+                auto r = (std::sin(23.0f / 8.0f * time) + 1.0f) * 0.1f + 0.4f;
+                auto g = (std::cos(13.0f / 8.0f * time) + 1.0f) * 0.2f + 0.3f;
+                auto b = (std::sin(41.0f / 8.0f * time) + 1.5f) * 0.2f;
 
                 m_window.clear(toColor(r, g, b, 1.0F));
                 co_await m_renderer.draw(m_window);

@@ -1,12 +1,12 @@
 #include "tet/renderer.hpp"
 
-#include <fmt/core.h>
+#include <spdlog/spdlog.h>
 
 namespace tet
 {
     async::Task<void> Renderer::draw(sf::RenderTarget& target)
     {
-        fmt::println("renderer draws stuff...");
+        spdlog::debug("renderer draws stuff...");
         co_return;
     }
 }

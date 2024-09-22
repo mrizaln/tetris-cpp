@@ -10,9 +10,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 find_package(SFML REQUIRED)
 find_package(asio REQUIRED)
-find_package(fmt REQUIRED)
 find_package(magic_enum REQUIRED)
-find_package(range-v3 REQUIRED)
 find_package(spdlog REQUIRED)
 find_package(tl-expected REQUIRED)
 
@@ -20,15 +18,8 @@ find_package(tl-expected REQUIRED)
 add_library(tet OBJECT source/tet/tetris.cpp source/tet/game_state.cpp
                        source/tet/renderer.cpp source/tet/block.cpp)
 target_include_directories(tet PUBLIC source)
-target_link_libraries(
-  tet
-  PUBLIC asio::asio
-         fmt::fmt
-         range-v3::range-v3
-         sfml::sfml
-         spdlog::spdlog
-         tl::expected
-         magic_enum::magic_enum)
+target_link_libraries(tet PUBLIC asio::asio sfml::sfml spdlog::spdlog
+                                 tl::expected magic_enum::magic_enum)
 
 function(compile name source)
   add_executable(${name} ${source})
@@ -37,9 +28,9 @@ function(compile name source)
   if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_compile_options(${name} PRIVATE -Wall -Wextra -Wconversion)
 
-    # sanitizer
-    target_compile_options(${name} PRIVATE -fsanitize=address,leak,undefined)
-    target_link_options(${name} PRIVATE -fsanitize=address,leak,undefined)
+    # sanitizer target_compile_options(${name} PRIVATE
+    # -fsanitize=address,leak,undefined) target_link_options(${name} PRIVATE
+    # -fsanitize=address,leak,undefined)
 
   elseif(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(${name} PRIVATE /W4)

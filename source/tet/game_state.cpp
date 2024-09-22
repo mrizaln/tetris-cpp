@@ -1,6 +1,6 @@
 #include "tet/game_state.hpp"
 
-#include <fmt/core.h>
+#include <spdlog/spdlog.h>
 
 namespace tet
 {
@@ -13,7 +13,7 @@ namespace tet
     {
         m_timer.expires_after(m_delay);
 
-        fmt::println("GameState is being updated...");
+        spdlog::debug("GameState is being updated...");
 
         co_await m_timer.async_wait();
     }

@@ -7,12 +7,10 @@ class Recipe(ConanFile):
     generators = ["CMakeToolchain", "CMakeDeps", "MSBuildDeps"]
     requires = [
         "asio/1.29.0",
-        "fmt/10.2.1",
-        "range-v3/0.12.0",
         "sfml/2.6.1",
         "spdlog/1.14.1",
         "tl-expected/1.1.0",
-        "magic_enum/0.9.6"
+        "magic_enum/0.9.6",
     ]
 
     def layout(self):
